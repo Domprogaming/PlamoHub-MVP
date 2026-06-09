@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlamoHub Indonesia - Gundam Base Theme</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gundam: {
+                            white: '#F5F7FA',  
+                            blue: '#0F4C81',   
+                            red: '#C8313E',    
+                            yellow: '#EFC028', 
+                            dark: '#1A1E24',   
+                            darker: '#111418'  
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gundam-darker text-gundam-white antialiased">
+
+    <header class="sticky top-0 z-50 bg-gundam-darker/90 backdrop-blur-md border-b border-gundam-dark">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-robot text-gundam-yellow text-2xl animate-pulse"></i>
+                <div>
+                    <span class="text-xl font-extrabold text-white tracking-tight">PLAMOHUB</span>
+                    <span class="text-[10px] block text-gundam-red uppercase tracking-widest -mt-1">Indonesia</span>
+                </div>
+            </div>
+            <span class="text-xs font-mono text-gundam-white bg-gundam-dark px-3 py-1 border border-gundam-blue/30 rounded-md">RX-78-2 Theme</span>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
+        
+        <section class="text-center space-y-4">
+            <div class="inline-block px-3 py-1 bg-gundam-blue/20 border border-gundam-blue/50 text-xs text-gundam-yellow rounded-full font-mono">
+                System: All Green. Ready to Launch!
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
+                Jangan Merakit <span class="text-gundam-red drop-shadow-md">Sendirian!</span>
+            </h1>
+            <p class="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+                Platform reservasi workspace komunal, kafe, dan ekosistem terintegrasi untuk para pehobi model kit.
+            </p>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+            <div class="bg-gundam-dark border border-gray-800 p-5 rounded-xl space-y-2 hover:border-gundam-red transition-colors">
+                <i class="fa-solid fa-user-slash text-gundam-red text-lg"></i>
+                <h3 class="font-bold text-white">Isolasi Pehobi</h3>
+                <p class="text-gray-400">Merakit sendirian memicu jenuh. PlamoHub menyatukan Anda.</p>
+            </div>
+            <div class="bg-gundam-dark border border-gray-800 p-5 rounded-xl space-y-2 hover:border-gundam-yellow transition-colors">
+                <i class="fa-solid fa-mug-hot text-gundam-yellow text-lg"></i>
+                <h3 class="font-bold text-white">Builder Cafe</h3>
+                <p class="text-gray-400">Lapar saat merakit robot? Pesan paket kopi dan camilan.</p>
+            </div>
+            <div class="bg-gundam-dark border border-gundam-blue/50 p-5 rounded-xl space-y-2 shadow-[0_0_15px_rgba(15,76,129,0.2)]">
+                <i class="fa-solid fa-cloud text-gundam-blue text-lg"></i>
+                <h3 class="font-bold text-gundam-blue">Sistem Cloud Instan</h3>
+                <p class="text-gray-300">Reservasi meja real-time terintegrasi basis data.</p>
+            </div>
+        </section>
+
+        <section id="booking" class="bg-gundam-dark border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col lg:flex-row gap-8">
+            
+            <div class="flex-1 space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-border-all text-gundam-blue"></i> Denah Meja Workshop</h2>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-gundam-darker p-4 rounded-2xl border border-gray-800">
+                    <button type="button" onclick="selectSeat('01')" id="seat-01" class="seat-btn bg-gundam-dark border border-gray-700 p-4 rounded-xl font-bold transition-all text-center text-gray-300 hover:border-gundam-yellow">
+                        MEJA 01 <br><span class="text-[10px] text-gundam-yellow font-normal">Standby</span>
+                    </button>
+                    <button type="button" onclick="selectSeat('02')" id="seat-02" class="seat-btn bg-gundam-dark border border-gray-700 p-4 rounded-xl font-bold transition-all text-center text-gray-300 hover:border-gundam-yellow">
+                        MEJA 02 <br><span class="text-[10px] text-gundam-yellow font-normal">Standby</span>
+                    </button>
+                    <div class="bg-gundam-red/10 border border-gundam-red/30 p-4 rounded-xl font-bold text-gundam-red/60 opacity-50 text-center cursor-not-allowed">
+                        MEJA 03 <br><span class="text-[10px] font-normal text-gundam-red">Deployed</span>
+                    </div>
+                    <button type="button" onclick="selectSeat('04')" id="seat-04" class="seat-btn bg-gundam-dark border border-gray-700 p-4 rounded-xl font-bold transition-all text-center text-gray-300 hover:border-gundam-yellow">
+                        MEJA 04 <br><span class="text-[10px] text-gundam-yellow font-normal">Standby</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/3 space-y-6">
+                <div class="bg-gundam-darker p-6 rounded-2xl border border-gray-800">
+                    <form id="form-reservasi" class="space-y-4">
+                        <div>
+                            <label class="text-xs text-gray-400 font-mono">Pilot Name</label>
+                            <input type="text" id="input-nama" required placeholder="Contoh: Erlan Reza" class="w-full bg-gundam-dark border border-gray-700 rounded-lg px-3 py-2 text-sm mt-1 text-gundam-white focus:outline-none focus:border-gundam-yellow">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-mono">Assigned Deck</label>
+                            <input type="text" id="input-meja" readonly placeholder="Pilih meja di layar kiri" class="w-full bg-gundam-dark border border-gray-700 rounded-lg px-3 py-2 text-sm mt-1 text-gundam-yellow font-bold text-center focus:outline-none cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 font-mono">Supplies (F&B)</label>
+                            <select id="input-konsumsi" class="w-full bg-gundam-dark border border-gray-700 rounded-lg px-3 py-2 text-sm mt-1 text-gundam-white focus:outline-none focus:border-gundam-yellow cursor-pointer">
+                                <option value="Tanpa Konsumsi">Standard (Hanya Meja)</option>
+                                <option value="Gundam Fuel (Kopi + Donat)">Gundam Fuel (Kopi + Donat)</option>
+                                <option value="Char's Custom (Spicy Fries)">Char's Custom (Spicy Fries)</option>
+                            </select>
+                        </div>
+                        <button type="submit" id="btn-submit" class="w-full bg-gundam-blue hover:bg-gundam-red py-3 rounded-lg font-bold text-white transition-colors duration-300 shadow-lg">
+                            LAUNCH SORTIE (Kunci Reservasi)
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-gundam-darker p-5 rounded-2xl border border-gray-800 space-y-3">
+                    <h3 class="text-xs font-bold text-gray-400 flex items-center gap-2 uppercase tracking-wider">
+                        <i class="fa-solid fa-server text-gundam-yellow animate-pulse"></i> Veda Cloud Server
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-[11px] text-left text-gray-400">
+                            <thead class="text-[9px] text-gray-500 uppercase bg-gundam-dark">
+                                <tr>
+                                    <th class="px-2 py-1.5 rounded-l">Pilot</th>
+                                    <th class="px-2 py-1.5">Deck</th>
+                                    <th class="px-2 py-1.5">Supply</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabel-booking">
+                                <tr>
+                                    <td colspan="3" class="px-2 py-4 text-center text-gray-600 italic">Syncing with server...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>

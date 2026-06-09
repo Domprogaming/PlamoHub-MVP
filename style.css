@@ -1,0 +1,27 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3b82f6;
+}
+.glow-mecha-yellow {
+    box-shadow: 0 0 10px rgba(239, 192, 40, 0.4), 0 0 20px rgba(239, 192, 40, 0.2);
+}
+
+.glow-mecha-red {
+    box-shadow: 0 0 10px rgba(200, 49, 62, 0.5), 0 0 20px rgba(200, 49, 62, 0.2);
+}
