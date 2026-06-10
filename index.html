@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlamoHub Indonesia - Gundam Base Hangar Mode</title>
+    <title>PlamoHub Indonesia - Gundam Hangar & Timer Mode</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -41,7 +41,7 @@
                     <span class="text-[10px] block text-gundam-red uppercase tracking-widest -mt-1">Indonesia</span>
                 </div>
             </div>
-            <span class="text-xs font-mono text-gundam-white bg-gundam-dark px-3 py-1 border border-gundam-blue/30 rounded-md">v1.3 - Mega Hangar (16 Decks)</span>
+            <span class="text-xs font-mono text-gundam-white bg-gundam-dark px-3 py-1 border border-gundam-blue/30 rounded-md">v1.4 - Mission Timer Active</span>
         </div>
     </header>
 
@@ -49,7 +49,7 @@
         
         <section class="text-center space-y-4">
             <div class="inline-block px-3 py-1 bg-gundam-blue/20 border border-gundam-blue/50 text-xs text-gundam-yellow rounded-full font-mono">
-                Hangar Status: Sector 7 Operational
+                System Status: Operation Time Matrix Enabled
             </div>
             <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
                 Jangan Merakit <span class="text-gundam-red drop-shadow-md">Sendirian!</span>
@@ -64,48 +64,47 @@
             <div class="flex-1 space-y-6">
                 <div>
                     <h2 class="text-xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-border-all text-gundam-blue"></i> Denah Meja Hangar Workshop</h2>
-                    <p class="text-xs text-gray-400 mt-1">Meja 01–12 Standard (Rp 15.000) | Meja 13–16 Premium Deck (Rp 25.000)</p>
+                    <p class="text-xs text-gray-400 mt-1">Biaya per jam: Standard (Rp 15.000) | Premium Deck 13, 15, 16 (Rp 25.000)</p>
                 </div>
                 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-gundam-darker p-4 rounded-2xl border border-gray-800">
-                    
                     <button type="button" onclick="selectSeat('01')" id="seat-01" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
-                        DECK 01 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                        DECK 01 <br><span class="text-[9px] text-emerald-400 font-normal">Rp 15k/jt</span>
                     </button>
                     <button type="button" onclick="selectSeat('02')" id="seat-02" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
-                        DECK 02 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                        DECK 02 <br><span class="text-[9px] text-emerald-400 font-normal">Rp 15k/jt</span>
                     </button>
                     <div class="bg-gundam-red/10 border border-gundam-red/30 p-3 rounded-xl font-bold text-xs text-gundam-red/60 opacity-50 text-center cursor-not-allowed">
                         DECK 03 <br><span class="text-[9px] font-normal text-gundam-red">Deployed</span>
                     </div>
                     <button type="button" onclick="selectSeat('04')" id="seat-04" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
-                        DECK 04 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                        DECK 04 <br><span class="text-[9px] text-emerald-400 font-normal">Rp 15k/jt</span>
                     </button>
 
                     <button type="button" onclick="selectSeat('05')" id="seat-05" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
-                        DECK 05 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                        DECK 05 <br><span class="text-[9px] text-emerald-400 font-normal">Rp 15k/jt</span>
                     </button>
                     <div class="bg-gundam-red/10 border border-gundam-red/30 p-3 rounded-xl font-bold text-xs text-gundam-red/60 opacity-50 text-center cursor-not-allowed">
                         DECK 06 <br><span class="text-[9px] font-normal text-gundam-red">Deployed</span>
                     </div>
                     <button type="button" onclick="selectSeat('07')" id="seat-07" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
-                        DECK 07 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                        DECK 07 <br><span class="text-[9px] text-emerald-400 font-normal">Rp 15k/jt</span>
                     </button>
                     <button type="button" onclick="selectSeat('08')" id="seat-08" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
-                        DECK 08 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                        DECK 08 <br><span class="text-[9px] text-emerald-400 font-normal">Rp 15k/jt</span>
                     </button>
 
                     <button type="button" onclick="selectSeat('09')" id="seat-09" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
-                        DECK 09 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                        DECK 09 <br><span class="text-[9px] text-emerald-400 font-normal">Rp 15k/jt</span>
                     </button>
                     <button type="button" onclick="selectSeat('10')" id="seat-10" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
-                        DECK 10 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                        DECK 10 <br><span class="text-[9px] text-emerald-400 font-normal">Rp 15k/jt</span>
                     </button>
                     <div class="bg-gundam-red/10 border border-gundam-red/30 p-3 rounded-xl font-bold text-xs text-gundam-red/60 opacity-50 text-center cursor-not-allowed">
                         DECK 11 <br><span class="text-[9px] font-normal text-gundam-red">Deployed</span>
                     </div>
                     <button type="button" onclick="selectSeat('12')" id="seat-12" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
-                        DECK 12 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                        DECK 12 <br><span class="text-[9px] text-emerald-400 font-normal">Rp 15k/jt</span>
                     </button>
 
                     <button type="button" onclick="selectSeat('13')" id="seat-13" class="seat-btn bg-gundam-dark border border-purple-900 p-3 rounded-xl font-bold transition-all text-center text-xs text-purple-300 hover:border-gundam-yellow">
@@ -120,7 +119,19 @@
                     <button type="button" onclick="selectSeat('16')" id="seat-16" class="seat-btn bg-gundam-dark border border-purple-900 p-3 rounded-xl font-bold transition-all text-center text-xs text-purple-300 hover:border-gundam-yellow">
                         DECK 16 <br><span class="text-[9px] text-gundam-yellow font-normal">Premium ★</span>
                     </button>
+                </div>
 
+                <div id="panel-stopwatch" class="hidden bg-gundam-darker border border-gundam-yellow/40 p-5 rounded-2xl shadow-[0_0_15px_rgba(239,192,40,0.15)] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-stopwatch text-gundam-yellow text-3xl animate-spin [animation-duration:10s]"></i>
+                        <div>
+                            <h4 class="font-bold text-sm text-white uppercase tracking-wide">Live Mission Control</h4>
+                            <p class="text-xs text-gray-400">Pilot <span id="stopwatch-nama" class="text-gundam-white font-bold">-</span> @ <span id="stopwatch-deck" class="text-gundam-yellow font-bold">-</span></p>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-mono font-extrabold text-gundam-yellow tracking-widest bg-gundam-dark px-6 py-2 border border-gray-800 rounded-xl" id="stopwatch-waktu">
+                        00:00:00
+                    </div>
                 </div>
             </div>
 
@@ -135,6 +146,17 @@
                             <label class="text-xs text-gray-400 font-mono">Assigned Deck</label>
                             <input type="text" id="input-meja" readonly placeholder="Pilih nomor deck di kiri" class="w-full bg-gundam-dark border border-gray-700 rounded-lg px-3 py-2 text-sm mt-1 text-gundam-yellow font-bold text-center focus:outline-none cursor-not-allowed">
                         </div>
+                        
+                        <div>
+                            <label class="text-xs text-gray-400 font-mono">Build Duration</label>
+                            <select id="input-durasi" class="w-full bg-gundam-dark border border-gray-700 rounded-lg px-3 py-2 text-sm mt-1 text-gundam-white focus:outline-none focus:border-gundam-yellow cursor-pointer">
+                                <option value="1">1 Jam</option>
+                                <option value="2">2 Jam</option>
+                                <option value="3">3 Jam</option>
+                                <option value="5">5 Jam</option>
+                            </select>
+                        </div>
+
                         <div>
                             <label class="text-xs text-gray-400 font-mono">Supplies (F&B)</label>
                             <select id="input-konsumsi" class="w-full bg-gundam-dark border border-gray-700 rounded-lg px-3 py-2 text-sm mt-1 text-gundam-white focus:outline-none focus:border-gundam-yellow cursor-pointer">
@@ -145,7 +167,7 @@
                         </div>
 
                         <div class="bg-gundam-dark border border-gray-800 p-3 rounded-xl flex justify-between items-center text-xs font-mono">
-                            <span class="text-gray-400">Total Cost:</span>
+                            <span class="text-gray-400">Total Cost (*Duration):</span>
                             <span id="total-biaya" class="text-base font-bold text-gundam-yellow">Rp 0</span>
                         </div>
 
@@ -165,7 +187,7 @@
                                 <tr>
                                     <th class="px-2 py-1.5 rounded-l">Pilot</th>
                                     <th class="px-2 py-1.5">Deck</th>
-                                    <th class="px-2 py-1.5">Supply</th>
+                                    <th class="px-2 py-1.5">Waktu</th>
                                     <th class="px-2 py-1.5 rounded-r">Biaya</th>
                                 </tr>
                             </thead>
