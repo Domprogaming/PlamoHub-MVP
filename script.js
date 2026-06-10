@@ -1,36 +1,101 @@
-// =========================================================================
-// 1. LOGIKA ANTARMUKA (DI-RENDER PERTAMA AGAR TOMBOL ANTI-MACET)
-// =========================================================================
-function selectSeat(num) {
-    console.log("Meja " + num + " diklik."); // Log untuk debugging di console
-    
-    // Reset semua warna tombol meja ke semula
-    document.querySelectorAll('.seat-btn').forEach(b => {
-        b.classList.remove('bg-blue-600', 'border-blue-400', 'text-white');
-        b.classList.add('bg-slate-900', 'border-slate-800');
-    });
-    
-    // Berikan efek aktif warna biru pada meja yang dipilih
-    const selectedBtn = document.getElementById('seat-' + num);
-    if(selectedBtn) {
-        selectedBtn.classList.remove('bg-slate-900', 'border-slate-800');
-        selectedBtn.classList.add('bg-blue-600', 'border-blue-400', 'text-white');
-    }
-    
-    // Masukkan nomor meja ke dalam kolom input form
-    const inputMeja = document.getElementById('input-meja');
-    if (inputMeja) {
-        inputMeja.value = 'MEJA ' + num;
+let hargaMejaAktif = 0;
+let hargaFBAktif = 0;
+let durasiJamAktif = 1; 
+let intervalStopwatch = null;
+
+function kalkulasiUlangBiaya() {
+    // Rumus: (Harga Meja + Makanan) x Jumlah Jam Sewa
+    const totalHarga = (hargaMejaAktif + hargaFBAktif) * durasiJamAktif;
+    const labelTotal = document.getElementById('total-biaya');
+    if (labelTotal) {
+        labelTotal.innerText = 'Rp ' + totalHarga.toLocaleString('id-ID');
     }
 }
 
-// Daftarkan fungsi ke window global agar bisa dibaca oleh 'onclick' di HTML
+function selectSeat(num) {
+    if (['13', '15', '16'].includes(num)) {
+        hargaMejaAktif = 25000; 
+    } else {
+        hargaMejaAktif = 15000; 
+    }
+    
+    document.querySelectorAll('.seat-btn').forEach(b => {
+        b.classList.remove('bg-gundam-blue', 'border-gundam-yellow', 'text-white');
+        b.classList.add('bg-gundam-dark', 'border-gray-700', 'text-gray-300');
+    });
+    
+    const selectedBtn = document.getElementById('seat-' + num);
+    if(selectedBtn) {
+        selectedBtn.classList.remove('bg-gundam-dark', 'border-gray-700', 'text-gray-300');
+        selectedBtn.classList.add('bg-gundam-blue', 'border-gundam-yellow', 'text-white');
+    }
+    
+    const inputMeja = document.getElementById('input-meja');
+    if (inputMeja) {
+        inputMeja.value = 'DECK ' + num;
+    }
+
+    kalkulasiUlangBiaya();
+}
 window.selectSeat = selectSeat;
 
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownDurasi = document.getElementById('input-durasi');
+    const dropdownKonsumsi = document.getElementById('input-konsumsi');
 
-// =========================================================================
-// 2. KONEKSI DATABASE CLOUD (MENGGUNAKAN ANON KEY ASLI)
-// =========================================================================
+    if (dropdownDurasi) {
+        dropdownDurasi.addEventListener('change', function(e) {
+            durasiJamAktif = parseInt(e.target.value) || 1;
+            kalkulasiUlangBiaya();
+        });
+    }
+
+    if (dropdownKonsumsi) {
+        dropdownKonsumsi.addEventListener('change', function(e) {
+            const pilihan = e.target.value;
+            if (pilihan === 'Gundam Fuel (Kopi + Donat)') {
+                hargaFBAktif = 25000;
+            } else if (pilihan === "Char's Custom (Spicy Fries)") {
+                hargaFBAktif = 30000;
+            } else {
+                hargaFBAktif = 0;
+            }
+            kalkulasiUlangBiaya();
+        });
+    }
+});
+
+
+function jalankanStopwatchWorkshop(nama, deck) {
+    if (intervalStopwatch) clearInterval(intervalStopwatch);
+
+    const panel = document.getElementById('panel-stopwatch');
+    const txtNama = document.getElementById('stopwatch-nama');
+    const txtDeck = document.getElementById('stopwatch-deck');
+    const txtWaktu = document.getElementById('stopwatch-waktu');
+
+    if (!panel || !txtWaktu) return;
+
+    txtNama.innerText = nama;
+    txtDeck.innerText = deck;
+    panel.classList.remove('hidden'); 
+
+    let totalDetik = 0;
+    intervalStopwatch = setInterval(() => {
+        totalDetik++;
+        
+        let jam = Math.floor(totalDetik / 3600);
+        let menit = Math.floor((totalDetik % 3600) / 60);
+        let detik = totalDetik % 60;
+
+        let formatJam = jam.toString().padStart(2, '0');
+        let formatMenit = menit.toString().padStart(2, '0');
+        let formatDetik = detik.toString().padStart(2, '0');
+
+        txtWaktu.innerText = `${formatJam}:${formatMenit}:${formatDetik}`;
+    }, 1000); 
+}
+
 const supabaseUrl = 'https://ukltnptwfasmvxrmqhts.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrbHRucHR3ZmFzbXZ4cm1xaHRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NzU0NjIsImV4cCI6MjA5NjU1MTQ2Mn0.Y_2Qia3VEfr-ord9mZ6J5v9SvRkqXCWLC4nRrtAJXfo'; 
 
@@ -38,13 +103,11 @@ let supabaseClient;
 try {
     supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 } catch (err) {
-    console.error("Supabase gagal inisialisasi:", err);
+    console.error("Supabase error:", err);
 }
 
 
-// =========================================================================
-// 3. TRANSMISI DATA: FORM SUBMIT KE SUPABASE (SUDAH INCLUDE KONSUMSI)
-// =========================================================================
+
 const formReservasi = document.getElementById('form-reservasi');
 if (formReservasi) {
     formReservasi.addEventListener('submit', async function(e) {
@@ -52,56 +115,66 @@ if (formReservasi) {
         
         const namaPemesan = document.getElementById('input-nama').value;
         const mejaDipilih = document.getElementById('input-meja').value;
-        const konsumsiDipilih = document.getElementById('input-konsumsi').value; // Ambil nilai dropdown F&B
+        const konsumsiDipilih = document.getElementById('input-konsumsi').value;
+        const durasiPilihanTeks = document.getElementById('input-durasi').value + ' Jam';
+        const totalHargaFinal = (hargaMejaAktif + hargaFBAktif) * durasiJamAktif;
         const btnSubmit = document.getElementById('btn-submit');
 
         if (!mejaDipilih) {
-            alert('Silakan pilih nomor meja Anda terlebih dahulu pada denah!');
+            alert('Silakan tentukan deck instalasi meja Anda pada radar denah kiri!');
             return;
         }
 
         if (btnSubmit) {
-            btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
+            btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Triggering Hyperdrive...';
             btnSubmit.disabled = true;
         }
 
-        // Tembak data ke database termasuk kolom 'konsumsi' yang baru dibuat
         const { data, error } = await supabaseClient
             .from('PlamoHub')
             .insert([{ 
                 nama: namaPemesan, 
                 meja: mejaDipilih, 
                 status: 'Confirmed',
-                konsumsi: konsumsiDipilih // Mengirim ke laci kolom 'konsumsi' di cloud
+                konsumsi: konsumsiDipilih,
+                total_harga: totalHargaFinal,
+                durasi: durasiPilihanTeks 
             }]);
 
         if (error) {
-            console.error("Error dari Supabase:", error);
+            console.error("Error Supabase:", error);
             alert("Gagal Menyimpan! Hambatan: " + error.message);
         } else {
-            alert("Successfull! Data reservasi dan paket hidangan berhasil masuk ke Cloud Supabase!");
-            document.getElementById('input-nama').value = ''; 
-            document.getElementById('input-konsumsi').value = 'Tanpa Konsumsi'; // Reset dropdown
+            alert("Sistem Berhasil! Data misi dicatat. Stopwatch merakit diaktifkan!");
+            
+            jalankanStopwatchWorkshop(namaPemesan, mejaDipilih);
+
+            // Reset Form & State Biaya
+            document.getElementById('input-nama').value = '';
+            document.getElementById('input-konsumsi').value = 'Tanpa Konsumsi';
+            document.getElementById('input-durasi').value = '1';
+            hargaMejaAktif = 0;
+            hargaFBAktif = 0;
+            durasiJamAktif = 1;
+            kalkulasiUlangBiaya();
+            
             fetchDataDariCloud(); 
         }
 
         if (btnSubmit) {
-            btnSubmit.innerHTML = 'Kunci Reservasi';
+            btnSubmit.innerHTML = 'LAUNCH SORTIE (Kunci Reservasi)';
             btnSubmit.disabled = false;
         }
     });
 }
 
 
-// =========================================================================
-// 4. RETRIEVAL DATA: AMBIL DATA DARI CLOUD KE TABEL REAL-TIME
-// =========================================================================
 async function fetchDataDariCloud() {
     const tbody = document.getElementById('tabel-booking');
     if(!tbody) return;
 
     if (!supabaseClient) {
-        tbody.innerHTML = '<tr><td colspan="4" class="px-2 py-4 text-center text-red-400">Database tidak terkonfigurasi.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="4" class="px-2 py-4 text-center text-red-400">Database Offline.</td></tr>';
         return;
     }
 
@@ -112,33 +185,34 @@ async function fetchDataDariCloud() {
 
     if (error) {
         console.error("Fetch error:", error);
-        tbody.innerHTML = '<tr><td colspan="4" class="px-2 py-4 text-center text-red-400">Gagal memuat data dari cloud.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="4" class="px-2 py-4 text-center text-red-400">Gagal sinkronisasi data cloud.</td></tr>';
         return;
     }
 
     tbody.innerHTML = '';
 
     if (data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" class="px-2 py-4 text-center text-slate-600 italic">Belum ada data di basis data cloud.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="4" class="px-2 py-4 text-center text-gray-600 italic">Belum ada data peluncuran di cloud.</td></tr>';
         return;
     }
 
     data.forEach(item => {
         const row = document.createElement('tr');
-        row.className = 'border-b border-slate-800/40 hover:bg-slate-900 transition-colors';
+        row.className = 'border-b border-gray-800/40 hover:bg-gundam-dark transition-colors';
         
-        // Atur tampilan ringkas jika tanpa konsumsi agar tabel tetap rapi
-        const displayKonsumsi = item.konsumsi ? item.konsumsi : '-';
+        const formatBiayaDiTabel = item.total_harga ? 'Rp ' + item.total_harga.toLocaleString('id-ID') : 'Rp 0';
+        
+        // Gabungkan info konsumsi dan durasi agar tabel tetap padat ringkas
+        const displayDurasi = item.durasi ? item.durasi : '1 Jam';
 
         row.innerHTML = `
-            <td class="px-2 py-2 font-medium text-slate-300 max-w-[90px] truncate">${item.nama}</td>
-            <td class="px-2 py-2 font-mono text-blue-400">${item.meja}</td>
-            <td class="px-2 py-2 text-slate-400 max-w-[120px] truncate">${displayKonsumsi}</td>
-            <td class="px-2 py-2 text-emerald-400 text-center"><i class="fa-solid fa-circle-check"></i></td>
+            <td class="px-2 py-2 font-medium text-gray-300 max-w-[90px] truncate">${item.nama}</td>
+            <td class="px-2 py-2 font-mono text-gundam-yellow">${item.meja}</td>
+            <td class="px-2 py-2 text-gray-400 font-mono">${displayDurasi}</td>
+            <td class="px-2 py-2 font-mono text-emerald-400 font-bold">${formatBiayaDiTabel}</td>
         `;
         tbody.appendChild(row);
     });
 }
 
-// Jalankan otomatis saat halaman selesai dimuat
 window.onload = fetchDataDariCloud;
