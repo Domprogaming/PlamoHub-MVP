@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlamoHub Indonesia - Gundam Base Theme</title>
+    <title>PlamoHub Indonesia - Gundam Base Hangar Mode</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -13,12 +13,12 @@
                 extend: {
                     colors: {
                         gundam: {
-                            white: '#F5F7FA',  
-                            blue: '#0F4C81',   
-                            red: '#C8313E',    
-                            yellow: '#EFC028', 
-                            dark: '#1A1E24',   
-                            darker: '#111418'  
+                            white: '#F5F7FA',  // Off-white armor
+                            blue: '#0F4C81',   // RX-78-2 Blue
+                            red: '#C8313E',    // Shield Red
+                            yellow: '#EFC028', // V-Fin Yellow
+                            dark: '#1A1E24',   // Inner Frame Dark
+                            darker: '#111418'  // Deep Space Background
                         }
                     }
                 }
@@ -41,7 +41,7 @@
                     <span class="text-[10px] block text-gundam-red uppercase tracking-widest -mt-1">Indonesia</span>
                 </div>
             </div>
-            <span class="text-xs font-mono text-gundam-white bg-gundam-dark px-3 py-1 border border-gundam-blue/30 rounded-md">RX-78-2 Theme</span>
+            <span class="text-xs font-mono text-gundam-white bg-gundam-dark px-3 py-1 border border-gundam-blue/30 rounded-md">v1.3 - Mega Hangar (16 Decks)</span>
         </div>
     </header>
 
@@ -49,7 +49,7 @@
         
         <section class="text-center space-y-4">
             <div class="inline-block px-3 py-1 bg-gundam-blue/20 border border-gundam-blue/50 text-xs text-gundam-yellow rounded-full font-mono">
-                System: All Green. Ready to Launch!
+                Hangar Status: Sector 7 Operational
             </div>
             <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
                 Jangan Merakit <span class="text-gundam-red drop-shadow-md">Sendirian!</span>
@@ -59,43 +59,68 @@
             </p>
         </section>
 
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-            <div class="bg-gundam-dark border border-gray-800 p-5 rounded-xl space-y-2 hover:border-gundam-red transition-colors">
-                <i class="fa-solid fa-user-slash text-gundam-red text-lg"></i>
-                <h3 class="font-bold text-white">Isolasi Pehobi</h3>
-                <p class="text-gray-400">Merakit sendirian memicu jenuh. PlamoHub menyatukan Anda.</p>
-            </div>
-            <div class="bg-gundam-dark border border-gray-800 p-5 rounded-xl space-y-2 hover:border-gundam-yellow transition-colors">
-                <i class="fa-solid fa-mug-hot text-gundam-yellow text-lg"></i>
-                <h3 class="font-bold text-white">Builder Cafe</h3>
-                <p class="text-gray-400">Lapar saat merakit robot? Pesan paket kopi dan camilan.</p>
-            </div>
-            <div class="bg-gundam-dark border border-gundam-blue/50 p-5 rounded-xl space-y-2 shadow-[0_0_15px_rgba(15,76,129,0.2)]">
-                <i class="fa-solid fa-cloud text-gundam-blue text-lg"></i>
-                <h3 class="font-bold text-gundam-blue">Sistem Cloud Instan</h3>
-                <p class="text-gray-300">Reservasi meja real-time terintegrasi basis data.</p>
-            </div>
-        </section>
-
         <section id="booking" class="bg-gundam-dark border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col lg:flex-row gap-8">
             
             <div class="flex-1 space-y-6">
                 <div>
-                    <h2 class="text-xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-border-all text-gundam-blue"></i> Denah Meja Workshop</h2>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-border-all text-gundam-blue"></i> Denah Meja Hangar Workshop</h2>
+                    <p class="text-xs text-gray-400 mt-1">Meja 01–12 Standard (Rp 15.000) | Meja 13–16 Premium Deck (Rp 25.000)</p>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-gundam-darker p-4 rounded-2xl border border-gray-800">
-                    <button type="button" onclick="selectSeat('01')" id="seat-01" class="seat-btn bg-gundam-dark border border-gray-700 p-4 rounded-xl font-bold transition-all text-center text-gray-300 hover:border-gundam-yellow">
-                        MEJA 01 <br><span class="text-[10px] text-gundam-yellow font-normal">Standby</span>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-gundam-darker p-4 rounded-2xl border border-gray-800">
+                    
+                    <button type="button" onclick="selectSeat('01')" id="seat-01" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
+                        DECK 01 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
                     </button>
-                    <button type="button" onclick="selectSeat('02')" id="seat-02" class="seat-btn bg-gundam-dark border border-gray-700 p-4 rounded-xl font-bold transition-all text-center text-gray-300 hover:border-gundam-yellow">
-                        MEJA 02 <br><span class="text-[10px] text-gundam-yellow font-normal">Standby</span>
+                    <button type="button" onclick="selectSeat('02')" id="seat-02" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
+                        DECK 02 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
                     </button>
-                    <div class="bg-gundam-red/10 border border-gundam-red/30 p-4 rounded-xl font-bold text-gundam-red/60 opacity-50 text-center cursor-not-allowed">
-                        MEJA 03 <br><span class="text-[10px] font-normal text-gundam-red">Deployed</span>
+                    <div class="bg-gundam-red/10 border border-gundam-red/30 p-3 rounded-xl font-bold text-xs text-gundam-red/60 opacity-50 text-center cursor-not-allowed">
+                        DECK 03 <br><span class="text-[9px] font-normal text-gundam-red">Deployed</span>
                     </div>
-                    <button type="button" onclick="selectSeat('04')" id="seat-04" class="seat-btn bg-gundam-dark border border-gray-700 p-4 rounded-xl font-bold transition-all text-center text-gray-300 hover:border-gundam-yellow">
-                        MEJA 04 <br><span class="text-[10px] text-gundam-yellow font-normal">Standby</span>
+                    <button type="button" onclick="selectSeat('04')" id="seat-04" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
+                        DECK 04 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
                     </button>
+
+                    <button type="button" onclick="selectSeat('05')" id="seat-05" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
+                        DECK 05 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                    </button>
+                    <div class="bg-gundam-red/10 border border-gundam-red/30 p-3 rounded-xl font-bold text-xs text-gundam-red/60 opacity-50 text-center cursor-not-allowed">
+                        DECK 06 <br><span class="text-[9px] font-normal text-gundam-red">Deployed</span>
+                    </div>
+                    <button type="button" onclick="selectSeat('07')" id="seat-07" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
+                        DECK 07 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                    </button>
+                    <button type="button" onclick="selectSeat('08')" id="seat-08" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
+                        DECK 08 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                    </button>
+
+                    <button type="button" onclick="selectSeat('09')" id="seat-09" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
+                        DECK 09 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                    </button>
+                    <button type="button" onclick="selectSeat('10')" id="seat-10" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
+                        DECK 10 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                    </button>
+                    <div class="bg-gundam-red/10 border border-gundam-red/30 p-3 rounded-xl font-bold text-xs text-gundam-red/60 opacity-50 text-center cursor-not-allowed">
+                        DECK 11 <br><span class="text-[9px] font-normal text-gundam-red">Deployed</span>
+                    </div>
+                    <button type="button" onclick="selectSeat('12')" id="seat-12" class="seat-btn bg-gundam-dark border border-gray-700 p-3 rounded-xl font-bold transition-all text-center text-xs text-gray-300 hover:border-gundam-yellow">
+                        DECK 12 <br><span class="text-[9px] text-emerald-400 font-normal">Standby</span>
+                    </button>
+
+                    <button type="button" onclick="selectSeat('13')" id="seat-13" class="seat-btn bg-gundam-dark border border-purple-900 p-3 rounded-xl font-bold transition-all text-center text-xs text-purple-300 hover:border-gundam-yellow">
+                        DECK 13 <br><span class="text-[9px] text-gundam-yellow font-normal">Premium ★</span>
+                    </button>
+                    <div class="bg-gundam-red/10 border border-gundam-red/30 p-3 rounded-xl font-bold text-xs text-gundam-red/60 opacity-50 text-center cursor-not-allowed">
+                        DECK 14 <br><span class="text-[9px] font-normal text-gundam-red">Deployed</span>
+                    </div>
+                    <button type="button" onclick="selectSeat('15')" id="seat-15" class="seat-btn bg-gundam-dark border border-purple-900 p-3 rounded-xl font-bold transition-all text-center text-xs text-purple-300 hover:border-gundam-yellow">
+                        DECK 15 <br><span class="text-[9px] text-gundam-yellow font-normal">Premium ★</span>
+                    </button>
+                    <button type="button" onclick="selectSeat('16')" id="seat-16" class="seat-btn bg-gundam-dark border border-purple-900 p-3 rounded-xl font-bold transition-all text-center text-xs text-purple-300 hover:border-gundam-yellow">
+                        DECK 16 <br><span class="text-[9px] text-gundam-yellow font-normal">Premium ★</span>
+                    </button>
+
                 </div>
             </div>
 
@@ -108,16 +133,22 @@
                         </div>
                         <div>
                             <label class="text-xs text-gray-400 font-mono">Assigned Deck</label>
-                            <input type="text" id="input-meja" readonly placeholder="Pilih meja di layar kiri" class="w-full bg-gundam-dark border border-gray-700 rounded-lg px-3 py-2 text-sm mt-1 text-gundam-yellow font-bold text-center focus:outline-none cursor-not-allowed">
+                            <input type="text" id="input-meja" readonly placeholder="Pilih nomor deck di kiri" class="w-full bg-gundam-dark border border-gray-700 rounded-lg px-3 py-2 text-sm mt-1 text-gundam-yellow font-bold text-center focus:outline-none cursor-not-allowed">
                         </div>
                         <div>
                             <label class="text-xs text-gray-400 font-mono">Supplies (F&B)</label>
                             <select id="input-konsumsi" class="w-full bg-gundam-dark border border-gray-700 rounded-lg px-3 py-2 text-sm mt-1 text-gundam-white focus:outline-none focus:border-gundam-yellow cursor-pointer">
-                                <option value="Tanpa Konsumsi">Standard (Hanya Meja)</option>
-                                <option value="Gundam Fuel (Kopi + Donat)">Gundam Fuel (Kopi + Donat)</option>
-                                <option value="Char's Custom (Spicy Fries)">Char's Custom (Spicy Fries)</option>
+                                <option value="Tanpa Konsumsi">Standard (Hanya Meja) - Rp 0</option>
+                                <option value="Gundam Fuel (Kopi + Donat)">Gundam Fuel (Kopi + Donat) - Rp 25.000</option>
+                                <option value="Char's Custom (Spicy Fries)">Char's Custom (Spicy Fries) - Rp 30.000</option>
                             </select>
                         </div>
+
+                        <div class="bg-gundam-dark border border-gray-800 p-3 rounded-xl flex justify-between items-center text-xs font-mono">
+                            <span class="text-gray-400">Total Cost:</span>
+                            <span id="total-biaya" class="text-base font-bold text-gundam-yellow">Rp 0</span>
+                        </div>
+
                         <button type="submit" id="btn-submit" class="w-full bg-gundam-blue hover:bg-gundam-red py-3 rounded-lg font-bold text-white transition-colors duration-300 shadow-lg">
                             LAUNCH SORTIE (Kunci Reservasi)
                         </button>
@@ -135,11 +166,12 @@
                                     <th class="px-2 py-1.5 rounded-l">Pilot</th>
                                     <th class="px-2 py-1.5">Deck</th>
                                     <th class="px-2 py-1.5">Supply</th>
+                                    <th class="px-2 py-1.5 rounded-r">Biaya</th>
                                 </tr>
                             </thead>
                             <tbody id="tabel-booking">
                                 <tr>
-                                    <td colspan="3" class="px-2 py-4 text-center text-gray-600 italic">Syncing with server...</td>
+                                    <td colspan="4" class="px-2 py-4 text-center text-gray-600 italic">Syncing with server...</td>
                                 </tr>
                             </tbody>
                         </table>
