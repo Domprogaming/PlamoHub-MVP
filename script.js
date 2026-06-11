@@ -65,23 +65,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
 function jalankanStopwatchWorkshop(nama, deck) {
-    if (intervalStopwatch) clearInterval(intervalStopwatch);
+    const container = document.getElementById('stopwatch-container');
+    if (!container) return;
 
-    const panel = document.getElementById('panel-stopwatch');
-    const txtNama = document.getElementById('stopwatch-nama');
-    const txtDeck = document.getElementById('stopwatch-deck');
-    const txtWaktu = document.getElementById('stopwatch-waktu');
+    const panelBaru = document.createElement('div');
+    panelBaru.className = "bg-gundam-darker border border-gundam-yellow/40 p-5 rounded-2xl shadow-[0_0_15px_rgba(239,192,40,0.15)] flex flex-col sm:flex-row items-center justify-between gap-4 animate-fade-in";
+    
+    panelBaru.innerHTML = `
+        <div class="flex items-center gap-3">
+            <i class="fa-solid fa-stopwatch text-gundam-yellow text-3xl animate-spin [animation-duration:10s]"></i>
+            <div>
+                <h4 class="font-bold text-sm text-white uppercase tracking-wide">Live Mission Control</h4>
+                <p class="text-xs text-gray-400">Pilot <span class="text-gundam-white font-bold">${nama}</span> @ <span class="text-gundam-yellow font-bold">${deck}</span></p>
+            </div>
+        </div>
+        <div class="text-3xl font-mono font-extrabold text-gundam-yellow tracking-widest bg-gundam-dark px-6 py-2 border border-gray-800 rounded-xl waktu-display">
+            00:00:00
+        </div>
+    `;
 
-    if (!panel || !txtWaktu) return;
+    container.appendChild(panelBaru);
 
-    txtNama.innerText = nama;
-    txtDeck.innerText = deck;
-    panel.classList.remove('hidden'); 
-
+    const txtWaktu = panelBaru.querySelector('.waktu-display');
     let totalDetik = 0;
-    intervalStopwatch = setInterval(() => {
+
+    setInterval(() => {
         totalDetik++;
         
         let jam = Math.floor(totalDetik / 3600);
@@ -164,6 +173,7 @@ if (formReservasi) {
         else {
             Swal.fire({
                 ttitle: 'SYSTEM ALL GREEN!',
+        // Kita suntikkan HTML kustom untuk isi teks dan ornamen HUD
         html: `
             <div class="relative p-4 mt-2">
                 <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-emerald-400 opacity-70"></div>
