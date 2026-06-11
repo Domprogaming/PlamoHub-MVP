@@ -164,7 +164,6 @@ if (formReservasi) {
         else {
             Swal.fire({
                 ttitle: 'SYSTEM ALL GREEN!',
-        // Kita suntikkan HTML kustom untuk isi teks dan ornamen HUD
         html: `
             <div class="relative p-4 mt-2">
                 <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-emerald-400 opacity-70"></div>
