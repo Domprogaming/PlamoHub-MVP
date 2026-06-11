@@ -121,7 +121,15 @@ if (formReservasi) {
         const btnSubmit = document.getElementById('btn-submit');
 
         if (!mejaDipilih) {
-            alert('Silakan tentukan deck instalasi meja Anda pada radar denah kiri!');
+            Swal.fire({
+                title: 'LAUNCH ERROR!',
+                Text: 'Silahkan tentukan deck instalasi meja anda pada radar denah kiri!',
+                icon:'Warning',
+                background:'1A1E24',
+                color:'F5F7FA',
+                confirmButtoncolor:'EFC028',
+                confirmButtonText:'Mengerti'
+            })
             return;
         }
 
@@ -143,9 +151,45 @@ if (formReservasi) {
 
         if (error) {
             console.error("Error Supabase:", error);
-            alert("Gagal Menyimpan! Hambatan: " + error.message);
-        } else {
-            alert("Sistem Berhasil! Data misi dicatat. Stopwatch merakit diaktifkan!");
+            Swal.fire({
+                title: 'LAUNCH ABORTED!',
+                Text: 'Hambatan: '  + eror.message,
+                icon:'error',
+                background:'1A1E24',
+                color:'F5F7FA',
+                confirmButtoncolor:'C8313E',
+                confirmButtonText:'PERBAIKI SISTEM'
+            })
+        } 
+        else {
+            Swal.fire({
+                ttitle: 'SYSTEM ALL GREEN!',
+        // Kita suntikkan HTML kustom untuk isi teks dan ornamen HUD
+        html: `
+            <div class="relative p-4 mt-2">
+                <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-emerald-400 opacity-70"></div>
+                <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-emerald-400 opacity-70"></div>
+                <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-emerald-400 opacity-70"></div>
+                <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-emerald-400 opacity-70"></div>
+
+                <div class="space-y-4">
+                    <p class="text-gray-300 font-mono text-sm tracking-widest uppercase">Data misi sukses direkam.</p>
+                    <p class="text-gundam-yellow font-mono text-xs animate-pulse">>> Mengaktifkan Stopwatch Merakit...</p>
+                </div>
+            </div>
+        `,
+        showConfirmButton: true,
+        confirmButtonText: '<i class="fa-solid fa-rocket mr-2"></i> LAUNCH SORTIE',
+        buttonsStyling: false, // Wajib dimatikan agar CSS kita bisa masuk
+        customClass: {
+            popup: 'swal-scifi-popup',
+            title: 'swal-scifi-title',
+            confirmButton: 'swal-scifi-confirm'
+        },
+        background: 'transparent',
+        // Backdrop (latar belakang luar pop-up) dibuat agak gelap
+        backdrop: `rgba(0, 5, 15, 0.8)`
+    });
             
             jalankanStopwatchWorkshop(namaPemesan, mejaDipilih);
 
